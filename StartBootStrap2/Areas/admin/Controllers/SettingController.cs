@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StartBootStrap2.Data;
+using StartBootStrap2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,27 @@ namespace StartBootStrap2.Areas.admin.Controllers
         public IActionResult Index()
         {
             return View(_context.Settings.FirstOrDefault());
+        }
+
+        public IActionResult Update(int id)
+        {
+            return View(_context.Settings.Find(id));
+        }
+
+        [HttpPost]
+        public IActionResult Update(Setting model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Settings.Update(model);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Model is not Valid!!!");
+                return View(model);
+            }
         }
     }
 }

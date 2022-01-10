@@ -26,8 +26,7 @@
                         <td>@Model.SubTitle</td>
                         <td>@Model.CopyrightYear</td>
                         <td>
-                            @*<a asp-area="admin" asp-controller="blog" asp-action="update" asp-route-id="" class="btn btn-success">Update</a>
-                                <a asp-area="admin" asp-controller="blog" asp-action="delete" asp-route-id="" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>*@
+                            <a asp-area="admin" asp-controller="setting" asp-action="update" asp-route-id="@Model.Id" class="btn btn-success">Update</a>
                         </td>
                     </tr>
                 </tbody>
