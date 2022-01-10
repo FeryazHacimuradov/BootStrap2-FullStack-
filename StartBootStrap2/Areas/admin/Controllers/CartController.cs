@@ -70,5 +70,90 @@ namespace StartBootStrap2.Areas.admin.Controllers
                 return View(model);
             }
         }
+
+        public IActionResult Update(int? id)
+        {
+            return View(_context.Carts.Find(id));
+        }
+        [HttpPost]
+        public IActionResult Update(Cart model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (model.ImageFile!=null)
+                {
+                    if (model.ImageFile.ContentType == "image/jpeg" || model.ImageFile.ContentType == "image/png")
+                    {
+                        if (model.ImageFile.Length <= 3145728)
+                        {
+                            string oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads", model.Image);
+                            if (System.IO.File.Exists(oldImagePath))
+                            {
+                                System.IO.File.Delete(oldImagePath);
+                            }
+
+
+                            string fileName = Guid.NewGuid() + "-" + model.ImageFile.FileName;
+                            string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads", fileName);
+
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                model.ImageFile.CopyTo(stream);
+                            }
+
+                            model.Image = fileName;
+                            _context.Carts.Update(model);
+                            _context.SaveChanges();
+
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Please upload max 3MB IMAGE file!");
+                            return View(model);
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Please upload only IMAGE file!");
+                        return View(model);
+                    }
+                }
+                else
+                {
+                    _context.Carts.Update(model);
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
+
+        public IActionResult Delete(int? id)
+        {
+            if (id==null)
+            {
+                return NotFound();
+            }
+
+            Cart cart = _context.Carts.Find(id);
+            if (cart==null)
+            {
+                return NotFound();
+            }
+
+            string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads", cart.Image);
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
+            _context.Carts.Remove(cart);
+            return RedirectToAction("index");
+        }
     }
 }

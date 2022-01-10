@@ -12,7 +12,7 @@ namespace StartBootStrap2.Models
     {
         [Key]
         public int Id { get; set; }
-        [MaxLength(350), Required]
+        [MaxLength(350)]
         public string Image { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }

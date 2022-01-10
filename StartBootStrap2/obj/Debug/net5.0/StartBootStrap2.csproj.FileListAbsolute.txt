@@ -305,3 +305,4 @@ C:\Users\Fifi\Desktop\BootStrap2-FullStack-\StartBootStrap2\obj\Debug\net5.0\Raz
 C:\Users\Fifi\Desktop\BootStrap2-FullStack-\StartBootStrap2\obj\Debug\net5.0\Razor\Areas\admin\Views\Cart\Index.cshtml.g.cs
 C:\Users\Fifi\Desktop\BootStrap2-FullStack-\StartBootStrap2\obj\Debug\net5.0\Razor\Areas\admin\Views\Cart\Create.cshtml.g.cs
 C:\Users\Fifi\Desktop\BootStrap2-FullStack-\StartBootStrap2\obj\Debug\net5.0\StartBootStrap2.csproj.AssemblyReference.cache
+C:\Users\Fifi\Desktop\BootStrap2-FullStack-\StartBootStrap2\obj\Debug\net5.0\Razor\Areas\admin\Views\Cart\Update.cshtml.g.cs
