@@ -153,6 +153,7 @@ namespace StartBootStrap2.Areas.admin.Controllers
                 System.IO.File.Delete(filePath);
             }
             _context.Carts.Remove(cart);
+            _context.SaveChanges();
             return RedirectToAction("index");
         }
     }
